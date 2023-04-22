@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Password Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1> Generate </h1>
+            <u style="color:aqua ;">
+                <h1 style="color:aqua ;">Random Password</h1>
+            </u>
+        </div>
+        <div class="form">
+            <input type="text" id="passward" placeholder="Passward" id="">
+            <img src="img.png" alt="" onclick="copyPass()">
+        </div>
+        <button class="btn" onclick="createPassward()">Generate</button>
+    </div>
+    <script>
+        const passwardBox = document.getElementById("passward")
+        const length = 12;
+        const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        const lowerCase = "abcdefghijklmnopqrstuvwxyz"
+        const number = "0123456789"
+        const symbol = "@!#$%^&*()_+{}[]<>?/|"
+        const allChars = upperCase + lowerCase + number + symbol
+
+        function createPassward() {
+            let passward = "";
+            passward += upperCase[Math.floor(Math.random() * upperCase.length)]
+            passward += lowerCase[Math.floor(Math.random() * lowerCase.length)]
+            passward += number[Math.floor(Math.random() * number.length)]
+            passward += symbol[Math.floor(Math.random() * symbol.length)]
+            while (length > passward.length) {
+                passward += allChars[Math.floor(Math.random() * allChars.length)]
+            }
+            passwardBox.value = passward
+        }
+
+        function copyPass() {
+            passwardBox.select()
+            document.execCommand("copy");
+        }
+    </script>
+</body>
+
+</html>
